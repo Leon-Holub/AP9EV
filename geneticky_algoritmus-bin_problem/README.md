@@ -1,1 +1,0 @@
-[Test](./charts/leading_ones/10/stats.md)
