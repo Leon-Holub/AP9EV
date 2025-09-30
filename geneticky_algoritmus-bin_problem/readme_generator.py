@@ -48,12 +48,10 @@ def create_readme(
     for problem in probs:
         lines.append(f"## Výsledky – {problem}\n")
         for D in dimensions:
-            lines.append(f"### D = {D}\n")
             base = f"charts/{problem}/{D}"
 
             stats_md = _read_if_exists(f"{base}/stats.md")
             if stats_md:
-                lines.append("#### Konvergenční statistiky\n")
                 lines.append(_rewrite_image_paths(stats_md, base))
                 lines.append("")
 

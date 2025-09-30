@@ -13,11 +13,7 @@
 
 ## Výsledky – onemax
 
-### D = 10
-
-#### Konvergenční statistiky
-
-## onemax – D=10
+### onemax – D=10
 
 | Selekce | best | worst | mean | median | std |
 |---------|------|-------|------|--------|-----|
@@ -28,11 +24,7 @@
 | --- | --- |
 | ![roulette](charts/onemax/10/roulette.png) | ![rank](charts/onemax/10/rank.png) |
 
-### D = 30
-
-#### Konvergenční statistiky
-
-## onemax – D=30
+### onemax – D=30
 
 | Selekce | best | worst | mean | median | std |
 |---------|------|-------|------|--------|-----|
@@ -43,11 +35,7 @@
 | --- | --- |
 | ![roulette](charts/onemax/30/roulette.png) | ![rank](charts/onemax/30/rank.png) |
 
-### D = 100
-
-#### Konvergenční statistiky
-
-## onemax – D=100
+### onemax – D=100
 
 | Selekce | best | worst | mean | median | std |
 |---------|------|-------|------|--------|-----|
@@ -63,11 +51,7 @@
 
 ## Výsledky – leading_ones
 
-### D = 10
-
-#### Konvergenční statistiky
-
-## leading_ones – D=10
+### leading_ones – D=10
 
 | Selekce | best | worst | mean | median | std |
 |---------|------|-------|------|--------|-----|
@@ -78,11 +62,7 @@
 | --- | --- |
 | ![roulette](charts/leading_ones/10/roulette.png) | ![rank](charts/leading_ones/10/rank.png) |
 
-### D = 30
-
-#### Konvergenční statistiky
-
-## leading_ones – D=30
+### leading_ones – D=30
 
 | Selekce | best | worst | mean | median | std |
 |---------|------|-------|------|--------|-----|
@@ -93,11 +73,7 @@
 | --- | --- |
 | ![roulette](charts/leading_ones/30/roulette.png) | ![rank](charts/leading_ones/30/rank.png) |
 
-### D = 100
-
-#### Konvergenční statistiky
-
-## leading_ones – D=100
+### leading_ones – D=100
 
 | Selekce | best | worst | mean | median | std |
 |---------|------|-------|------|--------|-----|

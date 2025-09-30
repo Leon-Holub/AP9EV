@@ -1,4 +1,4 @@
-## onemax – D=100
+### onemax – D=100
 
 | Selekce | best | worst | mean | median | std |
 |---------|------|-------|------|--------|-----|

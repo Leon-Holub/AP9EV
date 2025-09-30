@@ -1,4 +1,4 @@
-## leading_ones – D=30
+### leading_ones – D=30
 
 | Selekce | best | worst | mean | median | std |
 |---------|------|-------|------|--------|-----|
