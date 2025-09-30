@@ -2,10 +2,9 @@
 
 | Selekce | best | worst | mean | median | std |
 |---------|------|-------|------|--------|-----|
-| roulette | 85.00 | 81.00 | 83.30 | 83.00 | 1.57 |
-| rank | 94.00 | 90.00 | 91.80 | 91.50 | 1.23 |
+| roulette | 87.00 | 81.00 | 83.90 | 83.50 | 1.85 |
+| rank | 94.00 | 90.00 | 91.90 | 92.00 | 1.10 |
 
-![roulette](./roulette.png)
-
-![rank](./rank.png)
-
+| roulette | rank |
+| --- | --- |
+| ![roulette](roulette.png) | ![rank](rank.png) |

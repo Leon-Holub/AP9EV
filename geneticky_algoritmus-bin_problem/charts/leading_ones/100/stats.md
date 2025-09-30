@@ -2,10 +2,9 @@
 
 | Selekce | best | worst | mean | median | std |
 |---------|------|-------|------|--------|-----|
-| roulette | 26.00 | 17.00 | 21.80 | 21.00 | 3.08 |
-| rank | 30.00 | 16.00 | 21.40 | 21.50 | 4.17 |
+| roulette | 26.00 | 16.00 | 21.50 | 21.00 | 2.92 |
+| rank | 29.00 | 18.00 | 22.30 | 21.00 | 3.40 |
 
-![roulette](./roulette.png)
-
-![rank](./rank.png)
-
+| roulette | rank |
+| --- | --- |
+| ![roulette](roulette.png) | ![rank](rank.png) |

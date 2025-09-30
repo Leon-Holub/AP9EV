@@ -131,6 +131,15 @@ def write_stats_md(problem, D, rows):
             f.write(f"| {sel} | {st['best']:.2f} | {st['worst']:.2f} | "
                     f"{st['mean']:.2f} | {st['median']:.2f} | {st['std']:.2f} |\n")
         f.write("\n")
-        for sel, _ in rows:
-            f.write(f"![{sel}](./{sel}.png)\n\n")
+
+        # --- tabulka s obrázky vedle sebe ---
+        headers = " | ".join(sel for sel, _ in rows)
+        separators = " | ".join("---" for _ in rows)
+        images = " | ".join(f"![{sel}]({sel}.png)" for sel, _ in rows)
+
+        f.write(f"| {headers} |\n")
+        f.write(f"| {separators} |\n")
+        f.write(f"| {images} |\n")
+
     return md_path
+

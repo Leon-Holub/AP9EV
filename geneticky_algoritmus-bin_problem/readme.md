@@ -24,9 +24,9 @@
 | roulette | 10.00 | 10.00 | 10.00 | 10.00 | 0.00 |
 | rank | 10.00 | 10.00 | 10.00 | 10.00 | 0.00 |
 
-![roulette](charts/onemax/10/roulette.png)
-
-![rank](charts/onemax/10/rank.png)
+| roulette | rank |
+| --- | --- |
+| ![roulette](charts/onemax/10/roulette.png) | ![rank](charts/onemax/10/rank.png) |
 
 ### D = 30
 
@@ -36,12 +36,12 @@
 
 | Selekce | best | worst | mean | median | std |
 |---------|------|-------|------|--------|-----|
-| roulette | 30.00 | 29.00 | 29.80 | 30.00 | 0.42 |
+| roulette | 30.00 | 29.00 | 29.60 | 30.00 | 0.52 |
 | rank | 30.00 | 30.00 | 30.00 | 30.00 | 0.00 |
 
-![roulette](charts/onemax/30/roulette.png)
-
-![rank](charts/onemax/30/rank.png)
+| roulette | rank |
+| --- | --- |
+| ![roulette](charts/onemax/30/roulette.png) | ![rank](charts/onemax/30/rank.png) |
 
 ### D = 100
 
@@ -51,12 +51,12 @@
 
 | Selekce | best | worst | mean | median | std |
 |---------|------|-------|------|--------|-----|
-| roulette | 85.00 | 81.00 | 83.30 | 83.00 | 1.57 |
-| rank | 94.00 | 90.00 | 91.80 | 91.50 | 1.23 |
+| roulette | 87.00 | 81.00 | 83.90 | 83.50 | 1.85 |
+| rank | 94.00 | 90.00 | 91.90 | 92.00 | 1.10 |
 
-![roulette](charts/onemax/100/roulette.png)
-
-![rank](charts/onemax/100/rank.png)
+| roulette | rank |
+| --- | --- |
+| ![roulette](charts/onemax/100/roulette.png) | ![rank](charts/onemax/100/rank.png) |
 
 
 ---
@@ -74,9 +74,9 @@
 | roulette | 10.00 | 10.00 | 10.00 | 10.00 | 0.00 |
 | rank | 10.00 | 10.00 | 10.00 | 10.00 | 0.00 |
 
-![roulette](charts/leading_ones/10/roulette.png)
-
-![rank](charts/leading_ones/10/rank.png)
+| roulette | rank |
+| --- | --- |
+| ![roulette](charts/leading_ones/10/roulette.png) | ![rank](charts/leading_ones/10/rank.png) |
 
 ### D = 30
 
@@ -86,12 +86,12 @@
 
 | Selekce | best | worst | mean | median | std |
 |---------|------|-------|------|--------|-----|
-| roulette | 23.00 | 18.00 | 20.80 | 22.00 | 2.10 |
-| rank | 24.00 | 15.00 | 18.30 | 17.50 | 2.95 |
+| roulette | 23.00 | 13.00 | 17.90 | 18.50 | 3.35 |
+| rank | 27.00 | 14.00 | 20.70 | 21.50 | 3.92 |
 
-![roulette](charts/leading_ones/30/roulette.png)
-
-![rank](charts/leading_ones/30/rank.png)
+| roulette | rank |
+| --- | --- |
+| ![roulette](charts/leading_ones/30/roulette.png) | ![rank](charts/leading_ones/30/rank.png) |
 
 ### D = 100
 
@@ -101,12 +101,12 @@
 
 | Selekce | best | worst | mean | median | std |
 |---------|------|-------|------|--------|-----|
-| roulette | 26.00 | 17.00 | 21.80 | 21.00 | 3.08 |
-| rank | 30.00 | 16.00 | 21.40 | 21.50 | 4.17 |
+| roulette | 26.00 | 16.00 | 21.50 | 21.00 | 2.92 |
+| rank | 29.00 | 18.00 | 22.30 | 21.00 | 3.40 |
 
-![roulette](charts/leading_ones/100/roulette.png)
-
-![rank](charts/leading_ones/100/rank.png)
+| roulette | rank |
+| --- | --- |
+| ![roulette](charts/leading_ones/100/roulette.png) | ![rank](charts/leading_ones/100/rank.png) |
 
 
 ---

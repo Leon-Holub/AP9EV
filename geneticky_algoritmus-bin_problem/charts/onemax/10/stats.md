@@ -5,7 +5,6 @@
 | roulette | 10.00 | 10.00 | 10.00 | 10.00 | 0.00 |
 | rank | 10.00 | 10.00 | 10.00 | 10.00 | 0.00 |
 
-![roulette](./roulette.png)
-
-![rank](./rank.png)
-
+| roulette | rank |
+| --- | --- |
+| ![roulette](roulette.png) | ![rank](rank.png) |
