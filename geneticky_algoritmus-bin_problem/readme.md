@@ -1,3 +1,4 @@
+# Genetický algoritmus pro binární problém <img src="../logo.png" alt="logo" width="40" align="right"/>
 ## Použité parametry
 Níže jsou uvedena hlavní nastavení genetického algoritmu a jejich vysvětlení.
 

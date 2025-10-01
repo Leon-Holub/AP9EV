@@ -38,6 +38,9 @@ def create_readme(
 
     lines = []
 
+    lines.append(
+        "# Genetický algoritmus pro binární problém <img src=\"../logo.png\" alt=\"logo\" width=\"40\" align=\"right\"/>")
+
     lines.append("## Použité parametry")
     lines.append("Níže jsou uvedena hlavní nastavení genetického algoritmu a jejich vysvětlení.\n")
 
