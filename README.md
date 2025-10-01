@@ -2,4 +2,4 @@
 
 ---
 
-## [Genetický algoritmus - binární problém](./geneticky_algoritmus-bin_problem/readme.md)
+## [Genetický algoritmus - binární problém](./geneticky_algoritmus-bin_problem)
