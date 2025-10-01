@@ -1,4 +1,6 @@
 import re
+from ga_core import RNG_SEED, RUNS, DIM_LIST, PROBLEMS, POP_FACTOR, ELITE_FRAC, P_CROSS, P_MUT
+
 
 def _read_if_exists(path: str) -> str:
     try:
@@ -35,14 +37,38 @@ def create_readme(
     runs_val = runs if runs is not None else (RUNS if "RUNS" in globals() else 10)
 
     lines = []
-    lines.append(f"# Genetický algoritmus\n")
-    lines.append("\n---\n")
 
-    lines.append("## Nastavení experimentu\n")
-    lines.append(f"- Počet běhů na kombinaci: **{runs_val}**")
-    budgets = [f"{D}: **{100 * D}** evaluací" for D in dimensions]
-    lines.append(f"- Rozpočet na běh: **100×D** ( {', '.join(budgets)} )")
-    lines.append(f"- Problémy: {', '.join(f'**{p}**' for p in probs)}")
+    lines.append("## Použité parametry")
+    lines.append("Níže jsou uvedena hlavní nastavení genetického algoritmu a jejich vysvětlení.\n")
+
+    lines.append(f"- **RNG_SEED** = `{RNG_SEED}`  \n"
+                 f"  Seed generátoru náhodných čísel. Díky němu jsou výsledky reprodukovatelné.")
+
+    lines.append(f"- **RUNS** = `{RUNS}`  \n"
+                 f"  Počet běhů na každou kombinaci dimenze, úlohy a selekční strategie.")
+
+    lines.append(f"- **DIM_LIST** = `{DIM_LIST}`  \n"
+                 f"  Délky binárního řetězce (D), pro které se testuje.")
+
+    lines.append(f"- **POP_FACTOR** = `{POP_FACTOR}`  \n"
+                 f"  Populace má velikost `POP_FACTOR × D`, tedy např. {int(POP_FACTOR * 10)} jedinců pro D=10.")
+
+    lines.append(f"- **ELITE_FRAC** = `{ELITE_FRAC:.2f}`  \n"
+                 f"  {int(ELITE_FRAC * 100)} % nejlepších jedinců se zkopíruje přímo do další generace (elitismus).")
+
+    lines.append(f"- **P_CROSS** = `{P_CROSS:.2f}`  \n"
+                 f"  Pravděpodobnost, že dojde k jednobodovému křížení.")
+
+    lines.append(f"- **P_MUT** = `{P_MUT:.4f}`  \n"
+                 f"  Pravděpodobnost bitové mutace (otočení 0 ↔ 1) na jednotlivý bit.")
+
+    lines.append("")
+    lines.append("- **Selekce rodičů:** ruletová (*roulette*) a pořadová (*rank*).")
+    lines.append("- **Křížení:** jednobodové (one-point crossover).")
+    lines.append("- **Mutace:** bit-flip s pravděpodobností `P_MUT` na každý bit.")
+    lines.append("")
+    budget_info = ", ".join(f"{D} → {100 * D} evaluací" for D in DIM_LIST)
+    lines.append(f"**Rozpočet hodnocení:** 100 × D ( {budget_info} )")
     lines.append("\n---\n")
 
     for problem in probs:

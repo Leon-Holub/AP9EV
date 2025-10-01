@@ -1,13 +1,26 @@
-# Genetický algoritmus
+## Použité parametry
+Níže jsou uvedena hlavní nastavení genetického algoritmu a jejich vysvětlení.
 
+- **RNG_SEED** = `40`  
+  Seed generátoru náhodných čísel. Díky němu jsou výsledky reprodukovatelné.
+- **RUNS** = `10`  
+  Počet běhů na každou kombinaci dimenze, úlohy a selekční strategie.
+- **DIM_LIST** = `[10, 30, 100]`  
+  Délky binárního řetězce (D), pro které se testuje.
+- **POP_FACTOR** = `5.0`  
+  Populace má velikost `POP_FACTOR × D`, tedy např. 50 jedinců pro D=10.
+- **ELITE_FRAC** = `0.10`  
+  10 % nejlepších jedinců se zkopíruje přímo do další generace (elitismus).
+- **P_CROSS** = `1.00`  
+  Pravděpodobnost, že dojde k jednobodovému křížení.
+- **P_MUT** = `0.0100`  
+  Pravděpodobnost bitové mutace (otočení 0 ↔ 1) na jednotlivý bit.
 
----
+- **Selekce rodičů:** ruletová (*roulette*) a pořadová (*rank*).
+- **Křížení:** jednobodové (one-point crossover).
+- **Mutace:** bit-flip s pravděpodobností `P_MUT` na každý bit.
 
-## Nastavení experimentu
-
-- Počet běhů na kombinaci: **10**
-- Rozpočet na běh: **100×D** ( 10: **1000** evaluací, 30: **3000** evaluací, 100: **10000** evaluací )
-- Problémy: **onemax**, **leading_ones**
+**Rozpočet hodnocení:** 100 × D ( 10 → 1000 evaluací, 30 → 3000 evaluací, 100 → 10000 evaluací )
 
 ---
 
