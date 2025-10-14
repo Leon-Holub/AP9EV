@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 RNG_SEED = 42
 np.random.seed(RNG_SEED)
 
-RUNS = 3
+RUNS = 10
 D = 10
 EVAL_BUDGET = 10_000
 POP_SIZE = 200
@@ -74,7 +74,6 @@ def save_stats_md(problem, results, path):
 
 # GA operátory
 def rank_selection(fitness):
-    """Vybere index jedince podle hodnocení (menší = lepší)."""
     ranks = np.argsort(fitness)
     probs = np.linspace(1, len(fitness), len(fitness))
     probs = probs / np.sum(probs)
@@ -82,7 +81,6 @@ def rank_selection(fitness):
 
 
 def crossover(p1, p2):
-    """Single-point crossover mezi dimenzemi."""
     point = np.random.randint(1, len(p1))
     return np.concatenate([p1[:point], p2[point:]]), np.concatenate([p2[:point], p1[point:]])
 

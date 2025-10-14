@@ -1,10 +1,10 @@
 # Souhrnný report genetického algoritmu (GA)
-**Datum generování:** 2025-10-14 17:23:39
+**Datum generování:** 2025-10-14 17:41:03
 
 ## Nastavení experimentu
 
 - RNG_SEED = `42`
-- Počet běhů = `3`
+- Počet běhů = `10`
 - Dimenze (D) = `10`
 - Počet evaluací (budget) = `10000`
 - Velikost populace = `200`
@@ -38,15 +38,15 @@ sphere, rosenbrock, schwefel
 ---
 ## SPHERE
 
-### sphere – D=10, budget=10000, runs=3
+### sphere – D=10, budget=10000, runs=10
 
 | Varianta | best | worst | mean | median | std |
 |-----------|-------|-------|------|--------|------|
 | **IEEE754_bits** | **0.0000** | **0.0000** | **0.0000** | **0.0000** | **0.0000** |
-| FixedPoint_bits | 209.7152 | 209.7157 | 209.7154 | 209.7154 | 0.0002 |
-| BCD_bits | 0.1620 | 0.2277 | 0.1898 | 0.1796 | 0.0278 |
-| Real_Gauss | 0.0035 | 0.0076 | 0.0052 | 0.0046 | 0.0017 |
-| Real_RandomReset | 0.0580 | 0.1246 | 0.0847 | 0.0715 | 0.0287 |
+| FixedPoint_bits | 192.5742 | 235.9296 | 214.5038 | 209.7309 | 15.0625 |
+| BCD_bits | 0.0113 | 0.2076 | 0.0645 | 0.0530 | 0.0535 |
+| Real_Gauss | 0.0024 | 0.0155 | 0.0088 | 0.0083 | 0.0039 |
+| Real_RandomReset | 0.0298 | 0.2568 | 0.1383 | 0.1278 | 0.0657 |
 
 | IEEE754_bits | FixedPoint_bits | BCD_bits | Real_Gauss | Real_RandomReset |
 | --- | --- | --- | --- | --- |
@@ -55,15 +55,15 @@ sphere, rosenbrock, schwefel
 
 ## ROSENBROCK
 
-### rosenbrock – D=10, budget=10000, runs=3
+### rosenbrock – D=10, budget=10000, runs=10
 
 | Varianta | best | worst | mean | median | std |
 |-----------|-------|-------|------|--------|------|
-| **IEEE754_bits** | **8.3410** | **8.8217** | **8.5037** | **8.3486** | **0.2248** |
-| FixedPoint_bits | 628024.8758 | 742824.0000 | 688712.6507 | 695289.0763 | 47096.6861 |
-| BCD_bits | 73.6250 | 296.1030 | 168.8436 | 136.8028 | 93.6094 |
-| Real_Gauss | 7.2800 | 164.1191 | 60.6161 | 10.4493 | 73.1991 |
-| Real_RandomReset | 44.0776 | 73.0190 | 59.1837 | 60.4544 | 11.8494 |
+| **IEEE754_bits** | **8.3505** | **8.8165** | **8.6578** | **8.7614** | **0.1969** |
+| FixedPoint_bits | 374943.6353 | 742824.0000 | 607951.3262 | 625523.1817 | 105092.5129 |
+| BCD_bits | 48.6439 | 273.9253 | 175.3783 | 168.9099 | 60.9190 |
+| Real_Gauss | 9.1093 | 27.1451 | 14.0887 | 12.0019 | 5.2516 |
+| Real_RandomReset | 30.6240 | 156.0426 | 91.3999 | 92.3007 | 35.3104 |
 
 | IEEE754_bits | FixedPoint_bits | BCD_bits | Real_Gauss | Real_RandomReset |
 | --- | --- | --- | --- | --- |
@@ -72,15 +72,15 @@ sphere, rosenbrock, schwefel
 
 ## SCHWEFEL
 
-### schwefel – D=10, budget=10000, runs=3
+### schwefel – D=10, budget=10000, runs=10
 
 | Varianta | best | worst | mean | median | std |
 |-----------|-------|-------|------|--------|------|
-| IEEE754_bits | 1437.8279 | 2146.0024 | 1897.5727 | 2108.8877 | 325.4416 |
-| FixedPoint_bits | 1729.5022 | 1913.6272 | 1849.6783 | 1905.9054 | 85.0358 |
-| **BCD_bits** | **6.6718** | **16.8440** | **10.4870** | **7.9452** | **4.5251** |
-| Real_Gauss | 14.5433 | 122.1605 | 51.5211 | 17.8596 | 49.9679 |
-| Real_RandomReset | 18.7224 | 86.5308 | 57.5752 | 67.4725 | 28.5536 |
+| IEEE754_bits | 1609.5940 | 2176.7617 | 1918.7108 | 1914.4968 | 172.4852 |
+| FixedPoint_bits | 1476.3828 | 1913.2094 | 1697.9429 | 1683.9743 | 138.3659 |
+| **BCD_bits** | **3.6658** | **17.4658** | **10.0753** | **10.5058** | **4.7065** |
+| Real_Gauss | 3.1844 | 369.9057 | 77.9084 | 6.7505 | 123.2230 |
+| Real_RandomReset | 13.8739 | 113.1372 | 58.9407 | 61.6960 | 25.2869 |
 
 | IEEE754_bits | FixedPoint_bits | BCD_bits | Real_Gauss | Real_RandomReset |
 | --- | --- | --- | --- | --- |
@@ -91,11 +91,8 @@ sphere, rosenbrock, schwefel
 
 ## Závěr
 
-Výsledky potvrzují rozdíly mezi bitovými a reálnými variantami genetického algoritmu:
+Předpokládal jsem, že nejlépe si povede varianta s Gaussovskou mutací, protože pracuje s reálnými hodnotami a umožňuje jemné dolaďování řešení.
+Výsledky mě ale překvapily – nejčastěji nejlepších výsledků dosáhla varianta IEEE754_bits, která používá bitovou reprezentaci čísel ve formátu float32.
 
-- **Bitové reprezentace (IEEE754, FixedPoint, BCD)** trpí kvantizační chybou a nelineárním mapováním, což vede ke stagnaci a vyšším hodnotám fitness.
-- **Reálné varianty GA** (Gaussovská a náhodná mutace) vykazují hladší konvergenci a nižší výsledné chyby.
-- **Gaussian mutace** se osvědčila u spojitých a konvexních funkcí (Sphere), zatímco **RandomReset** lépe prozkoumává prostor u multimodálních funkcí (Schwefel).
-- U **Rosenbrocka** je vidět stabilní konvergence, ale obtížný posun úzkým údolím bez gradientní informace.
-
-Celkově jsou reálné reprezentace vhodnější pro optimalizaci v reálné doméně, zatímco bitové slouží spíše k experimentálnímu srovnání a demonstraci vlivu kódování.
+Tato varianta se ukázala jako velmi přesná, hlavně u jednodušších funkcí (Sphere, Rosenbrock), zatímco reálné varianty měly větší rozptyl výsledků.
+U složitější funkce Schwefel se nejlépe dařilo BCD reprezentaci, pravděpodobně díky větším skokům v prostoru, které pomáhají vyhnout se lokálním minimům.

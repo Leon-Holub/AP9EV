@@ -11,15 +11,13 @@ OUT_FILE = "readme.md"
 ZAVER = """\
 ## Závěr
 
-Výsledky potvrzují rozdíly mezi bitovými a reálnými variantami genetického algoritmu:
+Předpokládal jsem, že nejlépe si povede varianta s Gaussovskou mutací, protože pracuje s reálnými hodnotami a umožňuje jemné dolaďování řešení.
+Výsledky mě ale překvapily – nejčastěji nejlepších výsledků dosáhla varianta IEEE754_bits, která používá bitovou reprezentaci čísel ve formátu float32.
 
-- **Bitové reprezentace (IEEE754, FixedPoint, BCD)** trpí kvantizační chybou a nelineárním mapováním, což vede ke stagnaci a vyšším hodnotám fitness.
-- **Reálné varianty GA** (Gaussovská a náhodná mutace) vykazují hladší konvergenci a nižší výsledné chyby.
-- **Gaussian mutace** se osvědčila u spojitých a konvexních funkcí (Sphere), zatímco **RandomReset** lépe prozkoumává prostor u multimodálních funkcí (Schwefel).
-- U **Rosenbrocka** je vidět stabilní konvergence, ale obtížný posun úzkým údolím bez gradientní informace.
-
-Celkově jsou reálné reprezentace vhodnější pro optimalizaci v reálné doméně, zatímco bitové slouží spíše k experimentálnímu srovnání a demonstraci vlivu kódování.
+Tato varianta se ukázala jako velmi přesná, hlavně u jednodušších funkcí (Sphere, Rosenbrock), zatímco reálné varianty měly větší rozptyl výsledků.
+U složitější funkce Schwefel se nejlépe dařilo BCD reprezentaci, pravděpodobně díky větším skokům v prostoru, které pomáhají vyhnout se lokálním minimům.
 """
+
 
 # --- Načtení main.py jako modulu ---
 def load_main_config(file_path):
@@ -28,13 +26,16 @@ def load_main_config(file_path):
     spec.loader.exec_module(mod)
     return mod
 
+
 # --- Oprava cest obrázků ---
 def fix_image_paths(content: str, rel_dir: str) -> str:
     def repl(match):
         alt, path = match.groups()
         fixed = os.path.join(rel_dir, path).replace("\\", "/")
         return f"![{alt}]({fixed})"
+
     return re.sub(r"!\[([^\]]*)\]\(([^)]+)\)", repl, content)
+
 
 # --- Načtení všech stats.md ---
 def read_all_stats(root):
@@ -53,6 +54,7 @@ def read_all_stats(root):
                 fixed_content = fix_image_paths(content, rel_dir)
                 combined.append(f"## {func_dir.upper()}\n\n{fixed_content}\n")
     return "\n\n".join(combined)
+
 
 # --- Generování hlavičky + popisů ---
 def make_header(cfg):
@@ -87,7 +89,7 @@ def make_header(cfg):
         f"- **Reálné varianty:** každá dimenze má pravděpodobnost `{cfg.P_MUT_REAL}` na mutaci, přičemž se používají dvě metody:"
     )
     lines.append(
-        f"  - **Gaussian mutace:** hodnota se posune o N(0, σ²), kde σ = {cfg.GAUSS_SIGMA_FRAC*100:.1f}% rozsahu proměnné. "
+        f"  - **Gaussian mutace:** hodnota se posune o N(0, σ²), kde σ = {cfg.GAUSS_SIGMA_FRAC * 100:.1f}% rozsahu proměnné. "
         "Zajišťuje jemné ladění řešení v lokálním okolí."
     )
     lines.append(
@@ -126,6 +128,7 @@ def make_header(cfg):
     lines.append("\n---\n")
     return "\n".join(lines)
 
+
 # --- Hlavní funkce ---
 def main():
     if not os.path.exists(MAIN_FILE):
@@ -142,6 +145,7 @@ def main():
         f.write(ZAVER)
 
     print(f"✅ Souhrnný report uložen jako: {OUT_FILE}")
+
 
 if __name__ == "__main__":
     main()
