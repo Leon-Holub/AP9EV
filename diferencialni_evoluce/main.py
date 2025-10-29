@@ -31,40 +31,69 @@ def get_bounds(func):
     return FUNCTION_BOUNDS.get(func, (-10, 10))
 
 
+def run_multiple_runs(de_params, runs=10):
+    """Spustí algoritmus vícekrát a vrátí průměrný průběh konvergence."""
+    logs = []
+    final_fits = []
+
+    for r in range(runs):
+        de = DifferentialEvolution(**de_params, seed=np.random.randint(0, 10000))
+        best, best_fit, log = de.run()
+        logs.append(np.array(log))
+        final_fits.append(best_fit)
+
+    # Sjednotíme délku logů (každý může skončit jinak)
+    min_len = min(len(l) for l in logs)
+    logs = [l[:min_len] for l in logs]
+    mean_curve = np.mean([l[:, 1] for l in logs], axis=0)
+    evals = logs[0][:, 0]
+
+    return evals, mean_curve, final_fits
+
+
 if __name__ == "__main__":
     dim = 10
-    func_to_use = sphere
-    bounds = get_bounds(func_to_use)
-    max_evals = 20000
+    max_evals = 10000
     pop = 40
+    runs = 10
 
-    # 1) DE/rand/1/bin
-    de_rand = DifferentialEvolution(
-        func=func_to_use, dim=dim, bounds=bounds,
-        pop_size=pop, max_evals=max_evals,
-        strategy="rand1bin", F=0.5, CR=0.8
-    )
-    best, best_fit, log = de_rand.run()
-    print(f"[{func_to_use.__name__}] DE/rand/1/bin: best_fit={best_fit:.3e}")
-    de_rand.plot_convergence(f"{func_to_use.__name__} - DE/rand/1/bin", f"charts/{func_to_use.__name__}_rand1bin.png")
+    for function in FUNCTION_BOUNDS.keys():
+        func_to_use = function
+        bounds = get_bounds(func_to_use)
 
-    # 2) DE/best/1/bin
-    de_best = DifferentialEvolution(
-        func=func_to_use, dim=dim, bounds=bounds,
-        pop_size=pop, max_evals=max_evals,
-        strategy="best1bin", F=0.5, CR=0.8
-    )
-    best, best_fit, log = de_best.run()
-    print(f"[{func_to_use.__name__}] DE/best/1/bin: best_fit={best_fit:.3e}")
-    de_best.plot_convergence(f"{func_to_use.__name__} - DE/best/1/bin", f"charts/{func_to_use.__name__}_best1bin.png")
+        strategies = [
+            ("DE/rand/1/bin", dict(
+                func=func_to_use, dim=dim, bounds=bounds,
+                pop_size=pop, max_evals=max_evals,
+                strategy="rand1bin", F=0.5, CR=0.8
+            )),
+            ("DE/best/1/bin", dict(
+                func=func_to_use, dim=dim, bounds=bounds,
+                pop_size=pop, max_evals=max_evals,
+                strategy="best1bin", F=0.5, CR=0.8
+            )),
+            ("jDE (rand/1)", dict(
+                func=func_to_use, dim=dim, bounds=bounds,
+                pop_size=pop, max_evals=max_evals,
+                strategy="rand1bin", F=0.5, CR=0.9,
+                jde=True, tau1=0.1, tau2=0.1
+            )),
+        ]
 
-    # 3) jDE (rand/1)
-    de_jde = DifferentialEvolution(
-        func=func_to_use, dim=dim, bounds=bounds,
-        pop_size=pop, max_evals=max_evals,
-        strategy="rand1bin", F=0.5, CR=0.9,
-        jde=True, tau1=0.1, tau2=0.1
-    )
-    best, best_fit, log = de_jde.run()
-    print(f"[{func_to_use.__name__}] jDE (rand/1): best_fit={best_fit:.3e}")
-    de_jde.plot_convergence(f"{func_to_use.__name__} - jDE (rand/1)", f"charts/{func_to_use.__name__}_jde.png")
+        comparison_results = []
+
+        for label, params in strategies:
+            evals, mean_curve, final_fits = run_multiple_runs(params, runs=runs)
+            mean = np.mean(final_fits)
+            min_val = np.min(final_fits)
+            print(f"[{func_to_use.__name__}] {label}: "
+                  f"avg_final={mean:.3e}, best_final={min_val:.3e}")
+
+            log = np.column_stack((evals, mean_curve))
+            comparison_results.append((log, f"{label} - {min_val:.3e}"))
+
+        DifferentialEvolution.plot_comparison(
+            comparison_results,
+            title=f"Porovnání konvergence (průměr z {runs} běhů) – {func_to_use.__name__}",
+            out_path=f"charts/{func_to_use.__name__}_comparison_avg.png"
+        )

@@ -24,7 +24,6 @@ class DifferentialEvolution:
         self.eval_count = 0
         self.log = []  # (evals, best_fitness)
 
-
     def initialize(self):
         pop = self.rng.uniform(self.lower, self.upper, (self.pop_size, self.dim))
         fits = np.array([self.evaluate(ind) for ind in pop])
@@ -36,7 +35,6 @@ class DifferentialEvolution:
 
     def ensure_bounds(self, vec):
         return np.clip(vec, self.lower, self.upper)
-
 
     def mutate(self, pop, best, i, Fi):
         idxs = [idx for idx in range(self.pop_size) if idx != i]
@@ -104,7 +102,6 @@ class DifferentialEvolution:
 
         return best, best_fit, np.array(self.log)
 
-
     def plot_convergence(self, label, out_path=None):
         log = np.array(self.log)
         plt.figure()
@@ -113,6 +110,28 @@ class DifferentialEvolution:
         plt.xlabel("Počet evaluací")
         plt.ylabel("Nejlepší fitness")
         plt.title(f"Konvergence – {label}")
+        plt.legend()
+        plt.tight_layout()
+
+        if out_path:
+            os.makedirs(os.path.dirname(out_path), exist_ok=True)
+            plt.savefig(out_path, dpi=150)
+        plt.show()
+
+    @staticmethod
+    def plot_comparison(results, title, out_path=None):
+        """
+        Porovná konvergenci více variant DE v jednom grafu.
+        results: list of (log, label)
+        """
+        plt.figure()
+        for log, label in results:
+            arr = np.array(log)
+            plt.plot(arr[:, 0], arr[:, 1], label=label)
+        plt.yscale("log")
+        plt.xlabel("Počet evaluací")
+        plt.ylabel("Nejlepší fitness")
+        plt.title(title)
         plt.legend()
         plt.tight_layout()
 
