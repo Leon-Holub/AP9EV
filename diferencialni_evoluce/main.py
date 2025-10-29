@@ -14,28 +14,28 @@ def rastrigin(x):
 def rosenbrock(x):
     return sum(100 * (x[1:] - x[:-1] ** 2) ** 2 + (1 - x[:-1]) ** 2)
 
+
 def schwefel(x):
     return 418.9829 * len(x) - np.sum(x * np.sin(np.sqrt(np.abs(x))))
 
 
+FUNCTION_BOUNDS = {
+    sphere: (-100, 100),
+    rastrigin: (-5.12, 5.12),
+    rosenbrock: (-2.048, 2.048),
+    schwefel: (-500, 500),
+}
+
+
 def get_bounds(func):
-    if func.__name__ == "sphere":
-        return -100, 100
-    elif func.__name__ == "rastrigin":
-        return -5.12, 5.12
-    elif func.__name__ == "rosenbrock":
-        return -2.048, 2.048
-    elif func.__name__ == "schwefel":
-        return -500, 500
-    else:
-        return -10, 10
+    return FUNCTION_BOUNDS.get(func, (-10, 10))
 
 
 if __name__ == "__main__":
     dim = 10
-    func_to_use = schwefel
+    func_to_use = sphere
     bounds = get_bounds(func_to_use)
-    max_evals = 10000
+    max_evals = 20000
     pop = 40
 
     # 1) DE/rand/1/bin
