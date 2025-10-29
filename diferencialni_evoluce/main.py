@@ -32,7 +32,6 @@ def get_bounds(func):
 
 
 def run_multiple_runs(de_params, runs=10):
-    """Spustí algoritmus vícekrát a vrátí průměrný průběh konvergence."""
     logs = []
     final_fits = []
 
@@ -41,20 +40,19 @@ def run_multiple_runs(de_params, runs=10):
         best, best_fit, log = de.run()
         logs.append(np.array(log))
         final_fits.append(best_fit)
+        print(f"Best vector sample ({label}): {best[:3]}")
 
-    # Sjednotíme délku logů (každý může skončit jinak)
     min_len = min(len(l) for l in logs)
     logs = [l[:min_len] for l in logs]
     mean_curve = np.mean([l[:, 1] for l in logs], axis=0)
     evals = logs[0][:, 0]
-
     return evals, mean_curve, final_fits
 
 
 if __name__ == "__main__":
     dim = 10
     max_evals = 10000
-    pop = 40
+    pop = 50
     runs = 10
 
     for function in FUNCTION_BOUNDS.keys():
