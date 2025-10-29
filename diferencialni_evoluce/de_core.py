@@ -7,15 +7,7 @@ class DifferentialEvolution:
     def __init__(self, func, dim, bounds, pop_size=30, max_evals=10000,
                  strategy="rand1bin", F=0.5, CR=0.8,
                  jde=False, tau1=0.1, tau2=0.1, seed=42):
-        """
-        Diferenciální evoluce (DE)
-        func      : optimalizovaná funkce
-        dim       : počet dimenzí
-        bounds    : (lower, upper) hranice proměnných
-        strategy  : 'rand1bin' | 'best1bin'
-        jde       : aktivace self-adaptivní varianty jDE
-        tau1, tau2: pravděpodobnosti změny F a CR
-        """
+
         self.func = func
         self.dim = dim
         self.lower, self.upper = bounds
