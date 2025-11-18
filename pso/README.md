@@ -10,27 +10,30 @@ Otestujte tři varianty algoritmu PSO na vybraných testovacích funkcích:
 - Konstantní setrvačnost: **w = 0.6**, c1 = c2 = 1.49618, kruhová topologie (sousedství 2)
 
 Parametry:
-- Velikost populace: 20–100 (použito 40)
+- Velikost populace: 40
 - MAXFES: 20 000
 - vmax = 0.2 * (upper - lower)
-- Ošetření hranic pomocí clamp + vynulování rychlosti
-
-Během každé varianty je provedeno **10 běhů**, z nichž se počítá průměrná konvergenční křivka a statistiky výsledků.
+- Částice se mohou volně pohybovat i mimo prostor hledání.
+  Hodnoty mimo bounds jsou ohodnoceny jako **+inf**.
+- Nepoužívá se boundary-clipping.
+- Během každé varianty je provedeno **10 běhů**, z nichž se počítá průměrná konvergenční křivka a statistiky výsledků.
 
 
 ## Metodika
 
-Experimenty používají následující postup:
+Experimenty probíhají následovně:
 
 1. Pro každou testovací funkci (Sphere, Rosenbrock, Schwefel) se spustí tři varianty PSO.
-2. Každá varianta je spuštěna **10×** se shodnými parametry.
-3. Z každé série 10 běhů se získá:
-   - průměrná konvergenční křivka
-   - nejlepší, nejhorší, průměrná, mediánová a směrodatná odchylka finální hodnoty
+2. Každá varianta je spuštěna **10×**, vždy se stejnými parametry.
+3. Z každé série 10 běhů se vytvoří:
+   - průměrná konvergenční křivka podle FES (počet vyhodnocení),
+   - nejlepší, nejhorší, průměrná, mediánová a směrodatná odchylka finálních hodnot.
 4. Výsledky se ukládají do:
-   - `charts/<function>.png` — graf konvergence
-   - `results/<function>_results.md` — statistická tabulka
+   - `charts/<function>.png` — graf konvergence,
+   - `results/<function>_results.md` — statistický souhrn.
 5. Tento protokol (`README.md`) je generován automaticky.
+
+Použití FES místo iterací je standard v evolučních algoritmech — objektivně porovnává výpočetní náročnost.
 
 
 ## Parametry PSO variant
@@ -47,68 +50,72 @@ Experimenty používají následující postup:
 
 ### Rosenbrock
 
-![graf](charts\rosenbrock.png)
-
-# Výsledky PSO – rosenbrock
+![rosenbrock](charts/rosenbrock.png)
 
 | Varianta | Best | Worst | Mean | Median | Std |
 |----------|------|-------|------|--------|------|
-| lineární w (0.8→0.3) – global | 2.698724e+01 | 1.398901e+02 | 7.184747e+01 | 7.852437e+01 | 3.383196e+01 |
-| w = 0.7 – global | 5.602839e+00 | 7.775462e+01 | 3.379981e+01 | 2.639522e+01 | 2.262980e+01 |
-| **w = 0.6 – ring** | **2.506728e+00** | **1.415775e+02** | **4.776014e+01** | **4.496724e+01** | **4.420035e+01** |
+| lineární w (0.8→0.3) – global | 2.230398e+01 | 2.135381e+02 | 8.233964e+01 | 7.976434e+01 | 6.208948e+01 |
+| w = 0.7 – global | 1.551960e+01 | 8.092413e+01 | 5.357909e+01 | 7.259309e+01 | 2.759700e+01 |
+| **w = 0.6 – ring** | **2.969844e+00** | **7.290655e+01** | **3.332894e+01** | **2.231077e+01** | **2.828673e+01** |
 
 
-**Hodnocení pro rosenbrock:**
+#### Interpretace výsledků
 
-- Nejlepší varianta: **w = 0.6 – ring**
-
+- Rosenbrockova funkce obsahuje úzké zakřivené údolí.
+- Ring topologie udržuje diverzitu a zabraňuje předčasné konvergenci.
+- **Výsledky odpovídají teorii — ring PSO dominuje.**
 
 ---
 
 ### Schwefel
 
-![graf](charts\schwefel.png)
-
-# Výsledky PSO – schwefel
+![schwefel](charts/schwefel.png)
 
 | Varianta | Best | Worst | Mean | Median | Std |
 |----------|------|-------|------|--------|------|
-| **lineární w (0.8→0.3) – global** | **2.903537e+03** | **5.433110e+03** | **3.950219e+03** | **3.911570e+03** | **6.990780e+02** |
-| w = 0.7 – global | 3.336084e+03 | 6.121119e+03 | 4.664569e+03 | 4.513648e+03 | 8.980272e+02 |
-| w = 0.6 – ring | 3.813326e+03 | 5.313214e+03 | 4.901484e+03 | 5.045657e+03 | 4.135127e+02 |
+| **lineární w (0.8→0.3) – global** | **3.296770e+03** | **5.290366e+03** | **4.220529e+03** | **4.224579e+03** | **5.720900e+02** |
+| w = 0.7 – global | 4.224607e+03 | 5.922164e+03 | 5.138693e+03 | 5.251288e+03 | 5.214974e+02 |
+| w = 0.6 – ring | 4.138738e+03 | 5.695368e+03 | 4.961967e+03 | 4.964648e+03 | 4.280618e+02 |
 
 
-**Hodnocení pro schwefel:**
+#### Interpretace výsledků
 
-- Nejlepší varianta: **lineární w (0.8→0.3) – global**
-
+- Schwefel je extrémně multimodální funkce s mnoha lokálními minimy.
+- Lineární setrvačnost poskytuje agresivní exploraci na začátku.
+- **Proto lineární varianta dosáhla nejlepších výsledků.**
 
 ---
 
 ### Sphere
 
-![graf](charts\sphere.png)
-
-# Výsledky PSO – sphere
+![sphere](charts/sphere.png)
 
 | Varianta | Best | Worst | Mean | Median | Std |
 |----------|------|-------|------|--------|------|
-| lineární w (0.8→0.3) – global | 5.864500e-07 | 1.755876e-05 | 4.217092e-06 | 1.503929e-06 | 5.394013e-06 |
-| **w = 0.7 – global** | **9.534390e-12** | **1.954348e-10** | **6.481594e-11** | **5.178048e-11** | **5.822667e-11** |
-| w = 0.6 – ring | 4.708707e-08 | 3.643971e-07 | 1.133293e-07 | 9.148477e-08 | 8.915055e-08 |
+| lineární w (0.8→0.3) – global | 1.637713e-07 | 8.496366e-06 | 2.554926e-06 | 1.886138e-06 | 2.219346e-06 |
+| **w = 0.7 – global** | **3.423642e-12** | **2.630296e-08** | **3.383518e-09** | **3.667604e-10** | **7.710990e-09** |
+| w = 0.6 – ring | 3.308520e-08 | 1.184320e-07 | 7.404316e-08 | 6.459823e-08 | 2.966174e-08 |
 
 
-**Hodnocení pro sphere:**
+#### Interpretace výsledků
 
-- Nejlepší varianta: **w = 0.7 – global**
-
+- Sphere je jednoduchá unimodální funkce.
+- Nejlepší výkon má stabilní nastavení bez velkých výkyvů.
+- **Konstantní w = 0.7 global je očekávaně nejlepší.**
 
 ---
 
 ## Celkové zhodnocení
 
-- Nejčastější vítěz přes všechny funkce: **w = 0.6 – ring**
+- Každá varianta zvítězila na jedné testovací funkci.
+
+- **Dominance variant závisí na charakteru funkce.**
 
 - Výskyt vítězů: `{'w = 0.6 – ring': 1, 'lineární w (0.8→0.3) – global': 1, 'w = 0.7 – global': 1}`
 
 
+### Shrnutí chování PSO variací
+
+- Lineární setrvačnost exceluje v multimodálních prostorech.
+- Konstantní w = 0.7 je nejlepší v hladkých unimodálních funkcích.
+- Ring topologie přináší diverzitu a je vhodná pro funkce s úzkými 'údolími'.
