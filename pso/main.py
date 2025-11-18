@@ -12,27 +12,34 @@ if __name__ == "__main__":
 
         print("Spouštím varianty PSO...")
         print("  Lineární w (0.8→0.3), global")
-        (mean1, _), hist1 = run_multiple(lambda: variant_linear(func, bounds))
+        (fes1, mean1, std1), hist1 = run_multiple(lambda: variant_linear(func, bounds))
 
         print("  Konstantní w = 0.7, global")
-        (mean2, _), hist2 = run_multiple(lambda: variant_const_global(func, bounds))
+        (fes2, mean2, std2), hist2 = run_multiple(lambda: variant_const_global(func, bounds))
 
         print("  Konstantní w = 0.6, ring")
-        (mean3, _), hist3 = run_multiple(lambda: variant_const_ring(func, bounds))
+        (fes3, mean3, std3), hist3 = run_multiple(lambda: variant_const_ring(func, bounds))
 
         curves = [
-            (mean1, "lineární w (0.8→0.3), global"),
-            (mean2, "w = 0.7, global"),
-            (mean3, "w = 0.6, ring"),
+            (fes1, mean1, "lineární w (0.8→0.3), global"),
+            (fes2, mean2, "w = 0.7, global"),
+            (fes3, mean3, "w = 0.6, ring"),
         ]
 
-        plot_convergence(curves, f"Konvergence PSO – {name}", f"charts/{name}.png")
+        plot_convergence(
+            curves,
+            title=f"Konvergence PSO – {name}",
+            save_as=f"charts/{name}.png",
+        )
 
+        # statistiky finálních hodnot
         stats = {
             "lineární w (0.8→0.3) – global": compute_stats(hist1),
             "w = 0.7 – global": compute_stats(hist2),
             "w = 0.6 – ring": compute_stats(hist3),
         }
+
+        save_markdown(name, stats)
 
         save_markdown(name, stats)
         print(f"  Výsledky uloženy pro problém: {name}\n")
