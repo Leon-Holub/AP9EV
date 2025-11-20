@@ -1,4 +1,4 @@
-# PSO Benchmark – Protokol
+# PSO
 
 
 ## Zadání

@@ -5,3 +5,5 @@
 ## [Genetický algoritmus - reálný problém](./geneticky_algoritmus-real_problem)
 
 ## [Diferenciální evoluce](./diferencialni_evoluce)
+
+## [PSO](./pso/README.md)

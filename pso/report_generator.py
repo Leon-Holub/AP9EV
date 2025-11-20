@@ -64,7 +64,7 @@ def generate_readme(output_path="README.md"):
     files = sorted(f for f in os.listdir(result_dir) if f.endswith("_results.md"))
 
     lines = []
-    lines.append("# PSO Benchmark – Protokol\n")
+    lines.append("# PSO\n")
     lines.append(ASSIGNMENT_TEXT)
     lines.append(PARAMETERS_TEXT)
     lines.append("---\n")
