@@ -19,23 +19,6 @@ Parametry:
 - Během každé varianty je provedeno **10 běhů**, z nichž se počítá průměrná konvergenční křivka a statistiky výsledků.
 
 
-## Metodika
-
-Experimenty probíhají následovně:
-
-1. Pro každou testovací funkci (Sphere, Rosenbrock, Schwefel) se spustí tři varianty PSO.
-2. Každá varianta je spuštěna **10×**, vždy se stejnými parametry.
-3. Z každé série 10 běhů se vytvoří:
-   - průměrná konvergenční křivka podle FES (počet vyhodnocení),
-   - nejlepší, nejhorší, průměrná, mediánová a směrodatná odchylka finálních hodnot.
-4. Výsledky se ukládají do:
-   - `charts/<function>.png` — graf konvergence,
-   - `results/<function>_results.md` — statistický souhrn.
-5. Tento protokol (`README.md`) je generován automaticky.
-
-Použití FES místo iterací je standard v evolučních algoritmech — objektivně porovnává výpočetní náročnost.
-
-
 ## Parametry PSO variant
 
 | Varianta | w | c1 | c2 | Topologie |

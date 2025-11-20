@@ -19,23 +19,6 @@ Parametry:
 - Během každé varianty je provedeno **10 běhů**, z nichž se počítá průměrná konvergenční křivka a statistiky výsledků.
 """
 
-METHODOLOGY_TEXT = """
-## Metodika
-
-Experimenty probíhají následovně:
-
-1. Pro každou testovací funkci (Sphere, Rosenbrock, Schwefel) se spustí tři varianty PSO.
-2. Každá varianta je spuštěna **10×**, vždy se stejnými parametry.
-3. Z každé série 10 běhů se vytvoří:
-   - průměrná konvergenční křivka podle FES (počet vyhodnocení),
-   - nejlepší, nejhorší, průměrná, mediánová a směrodatná odchylka finálních hodnot.
-4. Výsledky se ukládají do:
-   - `charts/<function>.png` — graf konvergence,
-   - `results/<function>_results.md` — statistický souhrn.
-5. Tento protokol (`README.md`) je generován automaticky.
-
-Použití FES místo iterací je standard v evolučních algoritmech — objektivně porovnává výpočetní náročnost.
-"""
 
 PARAMETERS_TEXT = """
 ## Parametry PSO variant
@@ -83,7 +66,6 @@ def generate_readme(output_path="README.md"):
     lines = []
     lines.append("# PSO Benchmark – Protokol\n")
     lines.append(ASSIGNMENT_TEXT)
-    lines.append(METHODOLOGY_TEXT)
     lines.append(PARAMETERS_TEXT)
     lines.append("---\n")
     lines.append("## Výsledky\n")
