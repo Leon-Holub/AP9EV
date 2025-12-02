@@ -18,16 +18,15 @@ Limit počtu vyhodnocení:
 - **100 000** pro dimenzi **D=10**  
 - **200 000** pro dimenzi **D=20**
 
-Pro každou kombinaci se ukládá:
+U každé kombinace zaznamenáváme:
 
 - Průměr  
-- Směrodatná odchylka  
+- Směrodatnou odchylku  
 - Medián  
 - Minimum  
 - Maximum  
 
-Dále jsou generovány grafy konvergence:
-- 1 graf pro každou kombinaci funkce × dimenze = 2 grafy na funkci.
+Následně vytváříme grafy konvergence.
 
 
 # Výsledky podle funkcí
@@ -203,3 +202,47 @@ Dále jsou generovány grafy konvergence:
 
 ![D20_sphere_convergence.png](charts\D20_sphere_convergence.png)
 
+
+
+# Závěr
+
+Níže je shrnutí nejúspěšnějších algoritmů podle funkce a dimenze.
+
+
+## Přehled nejlepších algoritmů
+
+| Funkce | Nejlepší algoritmus (D=10) | Nejlepší algoritmus (D=20) |
+|--------|------------------------------|-----------------------------|
+| rastrigin | jDE_rand1bin | jDE_rand1bin |
+| rosenbrock | jDE_rand1bin | jDE_rand1bin |
+| schwefel | jDE_rand1bin | jDE_rand1bin |
+| sphere | DE_best1bin | DE_best1bin |
+
+## Slovní shrnutí výkonu algoritmů
+
+- Na funkci **rastrigin** byl nejlepší:
+  - v **D=10** → **jDE_rand1bin**
+  - v **D=20** → **jDE_rand1bin**
+
+- Na funkci **rosenbrock** byl nejlepší:
+  - v **D=10** → **jDE_rand1bin**
+  - v **D=20** → **jDE_rand1bin**
+
+- Na funkci **schwefel** byl nejlepší:
+  - v **D=10** → **jDE_rand1bin**
+  - v **D=20** → **jDE_rand1bin**
+
+- Na funkci **sphere** byl nejlepší:
+  - v **D=10** → **DE_best1bin**
+  - v **D=20** → **DE_best1bin**
+
+
+## Interpretace výsledků
+
+
+- **jDE** obvykle dominuje na silně multimodálních funkcích (Rastrigin, Schwefel).
+- **DE_best1bin** často exceluje na konvexních úlohách (Sphere) nebo u hladkých funkcí.
+- **PSO_linear_global** má slušný výkon v nižších dimenzích, ale hůře škáluje.
+- **GA** je výrazně nejslabší a slouží jako baseline pro porovnání.
+
+Celkově se jako nejuniverzálnější metoda ukázala varianta **jDE**, která se stabilně umísťovala mezi nejlepšími napříč různými typy funkcí.
