@@ -7,3 +7,5 @@
 ## [Diferenciální evoluce](./diferencialni_evoluce)
 
 ## [PSO](./pso/README.md)
+
+## [Srovnání algoritmů](./comparing_algorithms/README.md)
