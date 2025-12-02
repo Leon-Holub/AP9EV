@@ -90,13 +90,11 @@ def extract_best_algorithm_from_table(path):
     return best_algo
 
 
-
 # ---------------------------------------------------------
 # Main protocol generator
 # ---------------------------------------------------------
 
 def generate_protocol():
-
     tables_dir = "tables"
     charts_dir = "charts"
     dims = [10, 20]
@@ -154,8 +152,8 @@ Následně vytváříme grafy konvergence.
         lines.append(f"\n# Funkce: **{fname}**\n")
 
         for D in dims:
-            table_path = os.path.join(tables_dir, f"D{D}_{fname}_summary.md")
-            graph_path = os.path.join(charts_dir, f"D{D}_{fname}_convergence.png")
+            table_path = f"{tables_dir}/D{D}_{fname}_summary.md"
+            graph_path = f"{charts_dir}/D{D}_{fname}_convergence.png"
 
             # TABULKA
             if os.path.exists(table_path):

@@ -51,7 +51,7 @@ Následně vytváříme grafy konvergence.
 
 ### Konvergence – D=10
 
-![D10_rastrigin_convergence.png](charts\D10_rastrigin_convergence.png)
+![D10_rastrigin_convergence.png](charts/D10_rastrigin_convergence.png)
 
 
 
@@ -71,7 +71,7 @@ Následně vytváříme grafy konvergence.
 
 ### Konvergence – D=20
 
-![D20_rastrigin_convergence.png](charts\D20_rastrigin_convergence.png)
+![D20_rastrigin_convergence.png](charts/D20_rastrigin_convergence.png)
 
 
 
@@ -94,7 +94,7 @@ Následně vytváříme grafy konvergence.
 
 ### Konvergence – D=10
 
-![D10_rosenbrock_convergence.png](charts\D10_rosenbrock_convergence.png)
+![D10_rosenbrock_convergence.png](charts/D10_rosenbrock_convergence.png)
 
 
 
@@ -114,7 +114,7 @@ Následně vytváříme grafy konvergence.
 
 ### Konvergence – D=20
 
-![D20_rosenbrock_convergence.png](charts\D20_rosenbrock_convergence.png)
+![D20_rosenbrock_convergence.png](charts/D20_rosenbrock_convergence.png)
 
 
 
@@ -137,7 +137,7 @@ Následně vytváříme grafy konvergence.
 
 ### Konvergence – D=10
 
-![D10_schwefel_convergence.png](charts\D10_schwefel_convergence.png)
+![D10_schwefel_convergence.png](charts/D10_schwefel_convergence.png)
 
 
 
@@ -157,7 +157,7 @@ Následně vytváříme grafy konvergence.
 
 ### Konvergence – D=20
 
-![D20_schwefel_convergence.png](charts\D20_schwefel_convergence.png)
+![D20_schwefel_convergence.png](charts/D20_schwefel_convergence.png)
 
 
 
@@ -180,7 +180,7 @@ Následně vytváříme grafy konvergence.
 
 ### Konvergence – D=10
 
-![D10_sphere_convergence.png](charts\D10_sphere_convergence.png)
+![D10_sphere_convergence.png](charts/D10_sphere_convergence.png)
 
 
 
@@ -200,7 +200,7 @@ Následně vytváříme grafy konvergence.
 
 ### Konvergence – D=20
 
-![D20_sphere_convergence.png](charts\D20_sphere_convergence.png)
+![D20_sphere_convergence.png](charts/D20_sphere_convergence.png)
 
 
 
