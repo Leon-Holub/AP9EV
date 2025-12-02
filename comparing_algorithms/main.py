@@ -1,5 +1,3 @@
-# main_experiment.py
-
 import os
 import csv
 import time
@@ -197,15 +195,12 @@ def generate_convergence_chart_single(dim, fname):
         if len(histories) == 0:
             continue
 
-        # unify length
         min_len = min(len(h[0]) for h in histories)
         xs = histories[0][0][:min_len]
         matrix = np.array([h[1][:min_len] for h in histories])
 
-        # compute mean only
         mean_curve = matrix.mean(axis=0)
 
-        # *** ONLY MEAN LINE ***
         plt.plot(xs, mean_curve, label=algo_name, linewidth=2)
 
     plt.title(f"Convergence – D={dim}, function={fname}")
@@ -258,13 +253,11 @@ def save_summary_single(dim, fname):
             times.mean()
         ))
 
-    # najdeme nejlepší (nejnižší mean)
     if len(stats) > 0:
         best_mean = min(s[1] for s in stats)
     else:
         best_mean = None
 
-    # vytvoříme tabulku
     with open(out_path, "w", encoding="utf-8") as f:
         f.write(f"# Summary – D={dim}, Function={fname}\n\n")
         f.write("| Algorithm | Mean | Std.Dev. | Median | Min | Max | Mean time [s] |\n")
@@ -311,7 +304,6 @@ def run_experiments(runs=11):
             bounds = pdata["bounds"]
             print(f"\n  Funkce: {fname}")
 
-            # nejprve dopočítáme všechny algoritmy
             for algo_name, factory in algorithms.items():
                 print(f"    Algoritmus: {algo_name}")
 
@@ -346,7 +338,6 @@ def run_experiments(runs=11):
 
                         print(f"        -> run {run_id}: {best_fit:.4e}  ({runtime_sec:.2f} sec)")
 
-            # když všechny algoritmy doběhly → vytvoříme graf + tabulku
             print(f"\n  Generuji graf konvergence pro {fname} (D={dim})...")
             generate_convergence_chart_single(dim, fname)
 
