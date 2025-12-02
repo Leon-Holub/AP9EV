@@ -110,7 +110,7 @@ def generate_protocol():
     # Header
     # ---------------------------------------------------------
 
-    lines.append("#Porovnání evolučních algoritmů \n")
+    lines.append("# Porovnání evolučních algoritmů \n")
 
     lines.append("## Zadání\n")
     lines.append(
